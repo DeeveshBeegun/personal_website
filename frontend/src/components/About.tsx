@@ -15,6 +15,10 @@ function About() {
             <p>
                 I am currently Quiet: The Power of Introverts in a World That Can't Stop Talking
             </p>
+
+            <h2>Writing</h2>
+            <p></p>
+
         </section>
     );
 }
