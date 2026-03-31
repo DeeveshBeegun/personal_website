@@ -6,24 +6,18 @@ function About() {
   const hideStatusTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
+    setIsStatusVisible(true);
+    hideStatusTimeoutRef.current = window.setTimeout(() => {
+      setIsStatusVisible(false);
+      hideStatusTimeoutRef.current = null;
+    }, 1600);
+
     return () => {
       if (hideStatusTimeoutRef.current !== null) {
         window.clearTimeout(hideStatusTimeoutRef.current);
       }
     };
   }, []);
-
-  const handleStatusHover = () => {
-    if (hideStatusTimeoutRef.current !== null) {
-      window.clearTimeout(hideStatusTimeoutRef.current);
-    }
-
-    setIsStatusVisible(true);
-    hideStatusTimeoutRef.current = window.setTimeout(() => {
-      setIsStatusVisible(false);
-      hideStatusTimeoutRef.current = null;
-    }, 1600);
-  };
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
@@ -39,7 +33,6 @@ function About() {
       <h2>About Me</h2>
       <p>
         <span
-          onMouseEnter={handleStatusHover}
           style={{
             position: "relative",
             display: "inline-block",
