@@ -5,12 +5,20 @@ function About() {
   const [isStatusVisible, setIsStatusVisible] = useState(false);
   const hideStatusTimeoutRef = useRef<number | null>(null);
 
-  useEffect(() => {
+  const showStatus = () => {
+    if (hideStatusTimeoutRef.current !== null) {
+      window.clearTimeout(hideStatusTimeoutRef.current);
+    }
+
     setIsStatusVisible(true);
     hideStatusTimeoutRef.current = window.setTimeout(() => {
       setIsStatusVisible(false);
       hideStatusTimeoutRef.current = null;
     }, 1600);
+  };
+
+  useEffect(() => {
+    showStatus();
 
     return () => {
       if (hideStatusTimeoutRef.current !== null) {
@@ -33,6 +41,7 @@ function About() {
       <h2>About Me</h2>
       <p>
         <span
+          onMouseEnter={showStatus}
           style={{
             position: "relative",
             display: "inline-block",
@@ -51,11 +60,16 @@ function About() {
                 backgroundColor: "#111",
                 color: "#fff",
                 fontSize: "12px",
-                lineHeight: 1,
+                lineHeight: 1.2,
                 whiteSpace: "nowrap",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "2px",
               }}
             >
-              {currentStatus}
+              <span>Currently</span>
+              <span>{currentStatus}</span>
             </span>
           )}
           Hi 👋
