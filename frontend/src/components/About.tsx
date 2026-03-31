@@ -1,4 +1,6 @@
 function About() {
+  const currentStatus = "Dreamin'";
+
   const handleDownloadCV = () => {
     const link = document.createElement("a");
     link.href = "/cv.pdf";
@@ -12,7 +14,7 @@ function About() {
     <section>
       <h2>About Me</h2>
       <p>
-        Hi 👋, I am a Java developer with more than 4 years of experience in
+        Hi 👋, I am Deevesh Beegun, a Java developer with more than 4 years of experience in
         developing, configuring, and building Java applications. I am adept in
         technologies like Kubernetes and Kafka.
         I am mainly interested in Finance, Psychology and Computer Science. 
@@ -32,6 +34,9 @@ function About() {
         Download CV
       </button>
 
+      <h2>Current Status</h2>
+      <p>{currentStatus}</p>
+
       <h2>Current Project</h2>
       <p>
         I am currently working on a cypto-ai-agent and a kafka tool for
@@ -40,7 +45,7 @@ function About() {
 
       <h2>Current Book</h2>
       <p>
-        I am currently Quiet: The Power of Introverts in a World That Can't Stop
+        I am currently reading Quiet: The Power of Introverts in a World That Can't Stop
         Talking
       </p>
 
