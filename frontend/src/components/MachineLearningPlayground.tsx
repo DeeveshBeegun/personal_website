@@ -1,8 +1,106 @@
+import { Link } from "react-router-dom";
+
+const topics = [
+  {
+    title: "Linear Regression",
+    route: "/linear-regression",
+    description:
+      "Fit a line to data by minimizing squared errors. Learn the math and adjust your guess line interactively.",
+  },
+  {
+    title: "Logistic Regression",
+    route: "/logistic-regression",
+    description: "Binary classification using sigmoid function. Coming soon.",
+  },
+  {
+    title: "K-Means Clustering",
+    route: "/kmeans",
+    description:
+      "Unsupervised learning to partition data into clusters. Coming soon.",
+  },
+  {
+    title: "Decision Trees",
+    route: "/decision-trees",
+    description:
+      "Hierarchical model for classification and regression. Coming soon.",
+  },
+];
+
 export default function MachineLearningPlayground() {
   return (
-    <section>
-      <h2>Machine Learning Playground</h2>
-      <p>Machine Learning Playground</p>
+    <section style={{ maxWidth: "920px", margin: "0 auto" }}>
+      <h2 style={{ marginBottom: "8px" }}>Machine Learning Topics</h2>
+      <p style={{ marginTop: 0, color: "#444", lineHeight: 1.6 }}>
+        Interactive tutorials and visualizations for key machine learning
+        concepts. Select a topic to explore.
+      </p>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "24px",
+        }}
+      >
+        {topics.map((topic) => (
+          <Link
+            key={topic.route}
+            to={topic.route}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #d8d8d8",
+                borderRadius: "12px",
+                padding: "18px",
+                backgroundColor: "#fffdf8",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget;
+                el.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.12)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget;
+                el.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.05)";
+              }}
+            >
+              <h3 style={{ margin: "0 0 8px 0", fontSize: "18px" }}>
+                {topic.title}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  color: "#666",
+                  fontSize: "14px",
+                  lineHeight: 1.5,
+                  flex: 1,
+                }}
+              >
+                {topic.description}
+              </p>
+              <div
+                style={{
+                  marginTop: "12px",
+                  color: "#0070f3",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                }}
+              >
+                Explore →
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }

@@ -39,23 +39,27 @@ function About() {
   return (
     <section
       style={{
+        maxWidth: "920px",
+        margin: "0 auto",
         minHeight: "calc(100vh - 120px)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        padding: "0 20px",
       }}
     >
       <p
         style={{
           maxWidth: "760px",
           margin: "0 auto",
-          padding: "20px",
-          border: "1px solid #d9d9d9",
-          borderRadius: "10px",
+          padding: "24px",
+          border: "1px solid #d8d8d8",
+          borderRadius: "12px",
           textAlign: "center",
           lineHeight: 1.6,
-          backgroundColor: "rgba(255, 255, 255, 0.65)",
+          backgroundColor: "#fffdf8",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
         }}
       >
         <span
@@ -98,17 +102,27 @@ function About() {
         technologies like Kubernetes and Kafka. I am mainly interested in
         Finance, Psychology and Computer Science.
       </p>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", marginTop: "24px" }}>
         <button
           onClick={handleDownloadCV}
           style={{
             padding: "10px 20px",
-            marginTop: "12px",
             cursor: "pointer",
             backgroundColor: "#0070f3",
             color: "white",
             border: "none",
-            borderRadius: "4px",
+            borderRadius: "6px",
+            fontWeight: 500,
+            fontSize: "14px",
+            transition: "all 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget;
+            el.style.backgroundColor = "#0051cc";
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget;
+            el.style.backgroundColor = "#0070f3";
           }}
         >
           Download CV

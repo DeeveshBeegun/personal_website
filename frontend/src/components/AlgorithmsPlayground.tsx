@@ -1,39 +1,38 @@
 import { Link } from "react-router-dom";
 
-const templates = [
+const topics = [
   {
-    title: "Blog Post",
-    route: "/writing-blog-post",
+    title: "Sorting Algorithms",
+    route: "/sorting-algorithms",
     description:
-      "Personal insight or opinion piece. Quick to write and publish.",
+      "Compare QuickSort, MergeSort, and other sorting techniques visually.",
   },
   {
-    title: "Technical Article",
-    route: "/writing-technical-article",
+    title: "Graph Traversal",
+    route: "/graph-traversal",
     description:
-      "In-depth explanation of a concept or technology with examples.",
+      "BFS and DFS algorithms with step-by-step visualization. Coming soon.",
   },
   {
-    title: "Essay",
-    route: "/writing-essay",
+    title: "Dynamic Programming",
+    route: "/dynamic-programming",
     description:
-      "Formal, structured argument with introduction, body, and conclusion.",
+      "Solve optimal substructure problems with memoization. Coming soon.",
   },
   {
-    title: "Tutorial",
-    route: "/writing-tutorial",
-    description:
-      "Step-by-step guide to help readers learn a new skill or tool.",
+    title: "Greedy Algorithms",
+    route: "/greedy-algorithms",
+    description: "Explore local optimization strategies. Coming soon.",
   },
 ];
 
-export default function Writing() {
+export default function AlgorithmsPlayground() {
   return (
     <section style={{ maxWidth: "920px", margin: "0 auto" }}>
-      <h2 style={{ marginBottom: "8px" }}>Writing Templates</h2>
+      <h2 style={{ marginBottom: "8px" }}>Algorithm Topics</h2>
       <p style={{ marginTop: 0, color: "#444", lineHeight: 1.6 }}>
-        Choose a template to get started writing. Each template includes
-        structure tips, examples, and best practices.
+        Interactive visualizations for fundamental algorithms. Select a topic to
+        explore step-by-step execution.
       </p>
 
       <div
@@ -43,10 +42,10 @@ export default function Writing() {
           gap: "24px",
         }}
       >
-        {templates.map((template) => (
+        {topics.map((topic) => (
           <Link
-            key={template.route}
-            to={template.route}
+            key={topic.route}
+            to={topic.route}
             style={{
               textDecoration: "none",
               color: "inherit",
@@ -75,7 +74,7 @@ export default function Writing() {
               }}
             >
               <h3 style={{ margin: "0 0 8px 0", fontSize: "18px" }}>
-                {template.title}
+                {topic.title}
               </h3>
               <p
                 style={{
@@ -86,7 +85,7 @@ export default function Writing() {
                   flex: 1,
                 }}
               >
-                {template.description}
+                {topic.description}
               </p>
               <div
                 style={{
@@ -96,7 +95,7 @@ export default function Writing() {
                   fontSize: "14px",
                 }}
               >
-                Start Writing →
+                Explore →
               </div>
             </div>
           </Link>
