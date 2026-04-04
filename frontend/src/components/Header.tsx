@@ -15,6 +15,9 @@ export default function Header() {
           gap: "16px",
           flexWrap: "wrap",
           justifyContent: "center",
+          backgroundColor: "#f8f6f0",
+          padding: "12px 16px",
+          borderRadius: "10px",
         }}
       >
         <NavLink to="/about" style={linkStyle}>
