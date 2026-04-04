@@ -10,7 +10,7 @@ import MLDecisionTrees from "./components/MLDecisionTrees";
 import ALSortingAlgorithm from "./components/ALSortingAlgorithm";
 import SandboxKubernetes from "./components/SandboxKubernetes";
 import SandboxKafka from "./components/SandboxKafka";
-import Temporary from "./components/temporary";
+import Temporary from "./components/UnderConstruction";
 
 function App() {
   return (
