@@ -110,6 +110,13 @@ export default function Header() {
         >
           Algorithms
         </NavLink>
+        <NavLink
+          to="/sandbox"
+          style={linkStyle}
+          onClick={handleMobileLinkClick}
+        >
+          Sandbox
+        </NavLink>
       </nav>
     </header>
   );
