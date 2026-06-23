@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import ControlPlane from "./ControlPlane";
 
 const MONO =
   "'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, Consolas, monospace";
@@ -441,7 +440,16 @@ function About() {
                 <span>{currentStatus}</span>
               </span>
             )}
-            Hi 👋
+            Hi{" "}
+            <span
+              className="wave-hand"
+              style={{
+                display: "inline-block",
+                transformOrigin: "70% 70%",
+              }}
+            >
+              👋
+            </span>
           </span>
           <span>I'm Deevesh</span>
         </h1>
@@ -551,9 +559,6 @@ function About() {
           </div>
         </div>
       </div>
-
-      {/* Developer Control Plane — Argo CD–inspired dashboard */}
-      <ControlPlane />
 
       {/* Download CV */}
       <div>
@@ -674,7 +679,22 @@ function About() {
         </div>
       </div>
 
-      <style>{`@keyframes blink { 50% { opacity: 0; } }`}</style>
+      <style>{`
+        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes wave {
+          0%, 60%, 100% { transform: rotate(0deg); }
+          10%, 30% { transform: rotate(14deg); }
+          20% { transform: rotate(-8deg); }
+          40% { transform: rotate(-4deg); }
+          50% { transform: rotate(10deg); }
+        }
+        .wave-hand {
+          animation: wave 2.5s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .wave-hand { animation: none; }
+        }
+      `}</style>
     </section>
   );
 }
