@@ -17,8 +17,7 @@ export default function Book() {
     <section style={{ maxWidth: "920px", margin: "0 auto" }}>
       <h2 style={{ marginBottom: "8px" }}>Reading</h2>
       <p style={{ marginTop: 0, color: "#444", lineHeight: 1.6 }}>
-        A collection of books I'm reading or have recently completed. These
-        works shape my thinking and inspire my work.
+        A collection of books I'm reading or have recently completed.
       </p>
 
       <div
