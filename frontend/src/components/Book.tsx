@@ -1,6 +1,11 @@
 const books = [
   {
     title: "Currently Reading",
+    description: "Rich Dad Poor Dad",
+    status: "In Progress",
+  },
+  {
+    title: "Currently Reading",
     description:
       "Quiet: The Power of Introverts in a World That Can't Stop Talking",
     status: "In Progress",

@@ -90,13 +90,6 @@ export default function Header() {
           Books
         </NavLink>
         <NavLink
-          to="/writing"
-          style={linkStyle}
-          onClick={handleMobileLinkClick}
-        >
-          Writing
-        </NavLink>
-        <NavLink
           to="/machine-learning-playground"
           style={linkStyle}
           onClick={handleMobileLinkClick}

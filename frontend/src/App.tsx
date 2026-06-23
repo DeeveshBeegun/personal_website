@@ -11,11 +11,6 @@ import MLDecisionTrees from "./components/MLDecisionTrees";
 import ALSortingAlgorithm from "./components/ALSortingAlgorithm";
 import SandboxKubernetes from "./components/SandboxKubernetes";
 import SandboxKafka from "./components/SandboxKafka";
-import Writing from "./components/Writing";
-import WritingBlogPost from "./components/WritingBlogPost";
-import WritingTechnicalArticle from "./components/WritingTechnicalArticle";
-import WritingEssay from "./components/WritingEssay";
-import WritingTutorial from "./components/WritingTutorial";
 import Temporary from "./components/UnderConstruction";
 
 function App() {
@@ -27,14 +22,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/book" element={<Book />} />
-        <Route path="/writing" element={<Writing />} />
-        <Route path="/writing-blog-post" element={<WritingBlogPost />} />
-        <Route
-          path="/writing-technical-article"
-          element={<WritingTechnicalArticle />}
-        />
-        <Route path="/writing-essay" element={<WritingEssay />} />
-        <Route path="/writing-tutorial" element={<WritingTutorial />} />
         <Route path="/machine-learning-playground" element={<Temporary />} />
         <Route path="/linear-regression" element={<MLLinearRegression />} />
         <Route path="/logistic-regression" element={<MLLogisticRegression />} />

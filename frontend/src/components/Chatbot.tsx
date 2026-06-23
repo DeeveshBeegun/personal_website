@@ -86,10 +86,6 @@ function getBotResponse(input: string): string {
     return "There's a Books section on the site where I share books that have influenced my thinking — spanning technology, finance, psychology, and more.";
   }
 
-  if (q.match(/\b(writ|blog|essay|article|tutorial)\b/)) {
-    return "I also have a Writing section on this site for essays, articles, and tutorials on topics I care about. It's still growing!";
-  }
-
   if (q.match(/\b(location|where|country|mauritius|remote)\b/)) {
     return "I'm based in Mauritius 🌴 and I'm open to remote opportunities globally.";
   }
