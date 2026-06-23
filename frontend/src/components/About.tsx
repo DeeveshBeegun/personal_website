@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import ControlPlane from "./ControlPlane";
 
 const MONO =
   "'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, Consolas, monospace";
@@ -54,6 +55,242 @@ function Chip({ label }: { label: string }) {
     >
       {label}
     </span>
+  );
+}
+
+function JavaLogo() {
+  return (
+    <span
+      className="java-logo"
+      aria-hidden="true"
+      style={{ display: "inline-flex", flexShrink: 0 }}
+    >
+      <svg
+        width="22"
+        height="26"
+        viewBox="0 0 64 76"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Steam */}
+        <path
+          className="java-steam java-steam-1"
+          d="M24 26 C 18 18, 30 14, 24 6"
+          stroke="#E76F00"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+        />
+        <path
+          className="java-steam java-steam-2"
+          d="M38 26 C 32 18, 44 14, 38 6"
+          stroke="#5382A1"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+        />
+        {/* Cup */}
+        <path
+          d="M14 32 H46 V46 A12 12 0 0 1 34 58 H26 A12 12 0 0 1 14 46 Z"
+          fill="#5382A1"
+        />
+        {/* Handle */}
+        <path
+          d="M46 36 H50 A7 7 0 0 1 50 50 H46"
+          stroke="#5382A1"
+          strokeWidth="4"
+          fill="none"
+        />
+        {/* Saucer */}
+        <ellipse cx="30" cy="64" rx="22" ry="5" fill="#5382A1" />
+      </svg>
+      <style>{`
+        .java-logo { animation: java-float 3s ease-in-out infinite; }
+        .java-steam {
+          transform-origin: center;
+          animation: java-steam-rise 2.4s ease-in-out infinite;
+        }
+        .java-steam-2 { animation-delay: 0.8s; }
+        @keyframes java-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-2px); }
+        }
+        @keyframes java-steam-rise {
+          0% { transform: translateY(4px) scaleY(0.85); opacity: 0; }
+          35% { opacity: 1; }
+          100% { transform: translateY(-7px) scaleY(1.1); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .java-logo, .java-steam { animation: none; }
+        }
+      `}</style>
+    </span>
+  );
+}
+
+function CodeCard({
+  isRunning,
+  printedLines,
+  onRun,
+}: {
+  isRunning: boolean;
+  printedLines: string[];
+  onRun: () => void;
+}) {
+  return (
+    <div
+      style={{
+        borderRadius: "12px",
+        overflow: "hidden",
+        border: "1px solid #2d2d2d",
+        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "10px 14px",
+          backgroundColor: "#2d2d2d",
+        }}
+      >
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+          <WindowDot color="#ff5f56" />
+          <WindowDot color="#ffbd2e" />
+          <WindowDot color="#27c93f" />
+          <span
+            style={{
+              marginLeft: "8px",
+              color: "#9d9d9d",
+              fontFamily: MONO,
+              fontSize: "12px",
+            }}
+          >
+            Deevesh.java
+          </span>
+        </div>
+        <button
+          onClick={onRun}
+          disabled={isRunning}
+          style={{
+            padding: "5px 12px",
+            cursor: isRunning ? "default" : "pointer",
+            backgroundColor: isRunning ? "#3a3a3a" : "#27c93f",
+            color: isRunning ? "#9d9d9d" : "#0d2a12",
+            border: "none",
+            borderRadius: "6px",
+            fontWeight: 600,
+            fontSize: "12px",
+            fontFamily: MONO,
+            transition: "all 0.2s ease",
+          }}
+        >
+          {isRunning ? "Running…" : "▶ Run"}
+        </button>
+      </div>
+      <pre
+        style={{
+          margin: 0,
+          padding: "20px 24px",
+          backgroundColor: "#1e1e1e",
+          color: "#d4d4d4",
+          fontFamily: MONO,
+          fontSize: "13px",
+          lineHeight: 1.6,
+          textAlign: "left",
+          overflowX: "auto",
+        }}
+      >
+        <code>
+          <span style={{ color: "#569cd6" }}>public class</span>{" "}
+          <span style={{ color: "#4ec9b0" }}>Deevesh</span>{" "}
+          <span style={{ color: "#569cd6" }}>extends</span>{" "}
+          <span style={{ color: "#4ec9b0" }}>Human</span>{" "}
+          <span style={{ color: "#569cd6" }}>implements</span>{" "}
+          <span style={{ color: "#4ec9b0" }}>Runnable</span> {"{"}
+          {"\n\n"}
+          {"    "}
+          <span style={{ color: "#569cd6" }}>@Override</span>
+          {"\n"}
+          {"    "}
+          <span style={{ color: "#569cd6" }}>public</span>{" "}
+          <span style={{ color: "#569cd6" }}>void</span>{" "}
+          <span style={{ color: "#dcdcaa" }}>run</span>() {"{"}
+          {"\n"}
+          {"        "}
+          <span style={{ color: "#6a9955" }}>
+            // 4+ years shipping Java, one cup of coffee at a time
+          </span>
+          {"\n"}
+          {"        "}
+          <span style={{ color: "#569cd6" }}>while</span> (alive) {"{"}
+          {"\n"}
+          {"            "}
+          <span style={{ color: "#dcdcaa" }}>learn</span>(
+          <span style={{ color: "#ce9178" }}>"Finance"</span>,{" "}
+          <span style={{ color: "#ce9178" }}>"Psychology"</span>,{" "}
+          <span style={{ color: "#ce9178" }}>"CS"</span>);
+          {"\n"}
+          {"            "}
+          <span style={{ color: "#dcdcaa" }}>build</span>().
+          <span style={{ color: "#dcdcaa" }}>deploy</span>(
+          <span style={{ color: "#4ec9b0" }}>Kubernetes</span>.
+          <span style={{ color: "#dcdcaa" }}>cluster</span>());
+          {"\n"}
+          {"            "}
+          <span style={{ color: "#4ec9b0" }}>Kafka</span>.
+          <span style={{ color: "#dcdcaa" }}>publish</span>(ideas);
+          {"\n"}
+          {"        "}
+          {"}"}
+          {"\n"}
+          {"    "}
+          {"}"}
+          {"\n"}
+          {"}"}
+        </code>
+      </pre>
+      {(isRunning || printedLines.length > 0) && (
+        <div
+          style={{
+            borderTop: "1px solid #2d2d2d",
+            padding: "14px 24px",
+            backgroundColor: "#141414",
+            color: "#c8c8c8",
+            fontFamily: MONO,
+            fontSize: "12.5px",
+            lineHeight: 1.7,
+            textAlign: "left",
+          }}
+        >
+          {printedLines.map((line, index) => (
+            <div
+              key={index}
+              style={{
+                color: line.startsWith("$")
+                  ? "#9d9d9d"
+                  : line.includes("exit code 0")
+                    ? "#27c93f"
+                    : "#c8c8c8",
+              }}
+            >
+              {line}
+            </div>
+          ))}
+          {isRunning && (
+            <span
+              style={{
+                display: "inline-block",
+                width: "8px",
+                height: "15px",
+                backgroundColor: "#27c93f",
+                animation: "blink 1s step-start infinite",
+                verticalAlign: "middle",
+              }}
+            />
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -147,6 +384,9 @@ function About() {
   const canSend =
     contactMessage.trim().length > 0 && senderEmail.trim().length > 0;
 
+  // Toggle the intro between a prose "About me" and the Deevesh.java card.
+  const [view, setView] = useState<"about" | "code">("about");
+
   return (
     <section
       style={{
@@ -211,27 +451,81 @@ function About() {
             fontSize: "15px",
             color: "#666",
             fontFamily: MONO,
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
+          <JavaLogo />
           Java Developer · 4+ years of experience
         </p>
       </header>
 
-      {/* Bio */}
-      <div style={{ fontSize: "16px", lineHeight: 1.7, color: "#222" }}>
-        <p style={{ margin: "0 0 16px" }}>
-          I'm a Java developer with more than four years of experience
-          developing, configuring, and building Java applications — from backend
-          services to cloud-native, distributed systems. I enjoy working across
-          the full backend surface, designing reliable services and the
-          infrastructure that keeps them running.
-        </p>
-        <p style={{ margin: 0 }}>
-          Day to day I lean on technologies like Kubernetes and Apache Kafka to
-          build and operate event-driven systems at scale. Outside of code, I'm
-          drawn to Finance, Psychology, and Computer Science — and especially
-          the places where they overlap.
-        </p>
+      {/* Bio — toggle between prose and the Deevesh.java card */}
+      <div>
+        <div
+          style={{
+            display: "inline-flex",
+            padding: "3px",
+            marginBottom: "20px",
+            borderRadius: "8px",
+            border: "1px solid #e0e0e0",
+            backgroundColor: "#f5f5f5",
+            gap: "2px",
+          }}
+        >
+          {(
+            [
+              ["about", "About me"],
+              ["code", "Code"],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              key={value}
+              onClick={() => setView(value)}
+              style={{
+                padding: "6px 16px",
+                cursor: "pointer",
+                border: "none",
+                borderRadius: "6px",
+                fontSize: "13px",
+                fontWeight: 600,
+                fontFamily: value === "code" ? MONO : "inherit",
+                backgroundColor: view === value ? "#fff" : "transparent",
+                color: view === value ? "#111" : "#888",
+                boxShadow:
+                  view === value ? "0 1px 2px rgba(0, 0, 0, 0.1)" : "none",
+                transition: "all 0.15s ease",
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {view === "about" ? (
+          <div style={{ fontSize: "16px", lineHeight: 1.7, color: "#222" }}>
+            <p style={{ margin: "0 0 16px" }}>
+              I'm a Java developer with more than four years of experience
+              developing, configuring, and building Java applications — from
+              backend services to cloud-native, distributed systems. I enjoy
+              working across the full backend surface, designing reliable
+              services and the infrastructure that keeps them running.
+            </p>
+            <p style={{ margin: 0 }}>
+              Day to day I lean on technologies like Kubernetes and Apache Kafka
+              to build and operate event-driven systems at scale. Outside of
+              code, I'm drawn to Finance, Psychology, and Computer Science — and
+              especially the places where they overlap.
+            </p>
+          </div>
+        ) : (
+          <CodeCard
+            isRunning={isRunning}
+            printedLines={printedLines}
+            onRun={handleRun}
+          />
+        )}
       </div>
 
       {/* Tech & interests */}
@@ -258,162 +552,8 @@ function About() {
         </div>
       </div>
 
-      {/* Deevesh.java — a little personality */}
-      <div
-        style={{
-          borderRadius: "12px",
-          overflow: "hidden",
-          border: "1px solid #2d2d2d",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "10px 14px",
-            backgroundColor: "#2d2d2d",
-          }}
-        >
-          <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-            <WindowDot color="#ff5f56" />
-            <WindowDot color="#ffbd2e" />
-            <WindowDot color="#27c93f" />
-            <span
-              style={{
-                marginLeft: "8px",
-                color: "#9d9d9d",
-                fontFamily: MONO,
-                fontSize: "12px",
-              }}
-            >
-              Deevesh.java
-            </span>
-          </div>
-          <button
-            onClick={handleRun}
-            disabled={isRunning}
-            style={{
-              padding: "5px 12px",
-              cursor: isRunning ? "default" : "pointer",
-              backgroundColor: isRunning ? "#3a3a3a" : "#27c93f",
-              color: isRunning ? "#9d9d9d" : "#0d2a12",
-              border: "none",
-              borderRadius: "6px",
-              fontWeight: 600,
-              fontSize: "12px",
-              fontFamily: MONO,
-              transition: "all 0.2s ease",
-            }}
-          >
-            {isRunning ? "Running…" : "▶ Run"}
-          </button>
-        </div>
-        <pre
-          style={{
-            margin: 0,
-            padding: "20px 24px",
-            backgroundColor: "#1e1e1e",
-            color: "#d4d4d4",
-            fontFamily: MONO,
-            fontSize: "13px",
-            lineHeight: 1.6,
-            textAlign: "left",
-            overflowX: "auto",
-          }}
-        >
-          <code>
-            <span style={{ color: "#569cd6" }}>public class</span>{" "}
-            <span style={{ color: "#4ec9b0" }}>Deevesh</span>{" "}
-            <span style={{ color: "#569cd6" }}>extends</span>{" "}
-            <span style={{ color: "#4ec9b0" }}>Human</span>{" "}
-            <span style={{ color: "#569cd6" }}>implements</span>{" "}
-            <span style={{ color: "#4ec9b0" }}>Runnable</span> {"{"}
-            {"\n\n"}
-            {"    "}
-            <span style={{ color: "#569cd6" }}>@Override</span>
-            {"\n"}
-            {"    "}
-            <span style={{ color: "#569cd6" }}>public</span>{" "}
-            <span style={{ color: "#569cd6" }}>void</span>{" "}
-            <span style={{ color: "#dcdcaa" }}>run</span>() {"{"}
-            {"\n"}
-            {"        "}
-            <span style={{ color: "#6a9955" }}>
-              // 4+ years shipping Java, one cup of coffee at a time
-            </span>
-            {"\n"}
-            {"        "}
-            <span style={{ color: "#569cd6" }}>while</span> (alive) {"{"}
-            {"\n"}
-            {"            "}
-            <span style={{ color: "#dcdcaa" }}>learn</span>(
-            <span style={{ color: "#ce9178" }}>"Finance"</span>,{" "}
-            <span style={{ color: "#ce9178" }}>"Psychology"</span>,{" "}
-            <span style={{ color: "#ce9178" }}>"CS"</span>);
-            {"\n"}
-            {"            "}
-            <span style={{ color: "#dcdcaa" }}>build</span>().
-            <span style={{ color: "#dcdcaa" }}>deploy</span>(
-            <span style={{ color: "#4ec9b0" }}>Kubernetes</span>.
-            <span style={{ color: "#dcdcaa" }}>cluster</span>());
-            {"\n"}
-            {"            "}
-            <span style={{ color: "#4ec9b0" }}>Kafka</span>.
-            <span style={{ color: "#dcdcaa" }}>publish</span>(ideas);
-            {"\n"}
-            {"        "}
-            {"}"}
-            {"\n"}
-            {"    "}
-            {"}"}
-            {"\n"}
-            {"}"}
-          </code>
-        </pre>
-        {(isRunning || printedLines.length > 0) && (
-          <div
-            style={{
-              borderTop: "1px solid #2d2d2d",
-              padding: "14px 24px",
-              backgroundColor: "#141414",
-              color: "#c8c8c8",
-              fontFamily: MONO,
-              fontSize: "12.5px",
-              lineHeight: 1.7,
-              textAlign: "left",
-            }}
-          >
-            {printedLines.map((line, index) => (
-              <div
-                key={index}
-                style={{
-                  color: line.startsWith("$")
-                    ? "#9d9d9d"
-                    : line.includes("exit code 0")
-                      ? "#27c93f"
-                      : "#c8c8c8",
-                }}
-              >
-                {line}
-              </div>
-            ))}
-            {isRunning && (
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "8px",
-                  height: "15px",
-                  backgroundColor: "#27c93f",
-                  animation: "blink 1s step-start infinite",
-                  verticalAlign: "middle",
-                }}
-              />
-            )}
-          </div>
-        )}
-      </div>
+      {/* Developer Control Plane — Argo CD–inspired dashboard */}
+      <ControlPlane />
 
       {/* Download CV */}
       <div>
